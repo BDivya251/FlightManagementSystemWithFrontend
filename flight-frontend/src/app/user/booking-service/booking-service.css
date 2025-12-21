@@ -1,0 +1,49 @@
+/* Page container */
+/* form {
+  width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+} */
+
+/* Headings */
+/* h1 {
+  font-size: 14px;
+  margin: 12px 0 4px;
+  color: #333;
+} */
+
+/* Inputs */
+input {
+  width: 40%;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Button */
+/* button {
+  width: 100%;
+  padding: 8px;
+  background-color: #2563eb; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+} */
+
+/* button:hover {
+  background-color: #1d4ed8;
+} */
+
+/* PNR display */
+/* h1[ng-reflect-ng-if] {
+  text-align: center;
+  color: green;
+  margin-top: 20px;
+} */

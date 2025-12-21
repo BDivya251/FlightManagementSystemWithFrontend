@@ -1,0 +1,67 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-xl shadow-md w-96">
+
+    <h2 class="text-2xl font-bold text-center mb-6">Sign In</h2>
+
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+
+      <!-- Username -->
+      <div class="mb-4">
+        <input
+          type="text"
+          placeholder="Username"
+          class="w-full p-3 border rounded"
+          name="username"
+          [(ngModel)]="username"
+          #usernameCtrl="ngModel"
+          required
+        />
+
+        <!-- Username Error -->
+        <p
+          *ngIf="usernameCtrl.invalid && (usernameCtrl.touched || loginForm.submitted)"
+          class="text-red-600 text-sm mt-1"
+        >
+          Username is required
+        </p>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-4">
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full p-3 border rounded"
+          name="password"
+          [(ngModel)]="password"
+          #passwordCtrl="ngModel"
+          required
+        />
+
+        <!-- Password Error -->
+        <p
+          *ngIf="passwordCtrl.invalid && (passwordCtrl.touched || loginForm.submitted)"
+          class="text-red-600 text-sm mt-1"
+        >
+          Password is required
+        </p>
+      </div>
+
+      <!-- Login Button -->
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white py-2 rounded
+               hover:bg-blue-700 transition disabled:opacity-50"
+      >
+        Login
+      </button>
+
+    </form>
+   
+    <!-- Backend Error -->
+    <p *ngIf="errorMessage" class="text-red-600 text-center mt-4">
+      {{ errorMessage }}
+    </p>
+
+  </div>
+</div>

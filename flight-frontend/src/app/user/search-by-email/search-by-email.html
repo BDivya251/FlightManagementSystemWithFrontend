@@ -1,0 +1,48 @@
+<p>search-by-email works!</p>
+<form (ngSubmit)="getFlights()" #emailform="ngForm">
+    <h1>Email</h1>
+    <input type="email" 
+    name="email"
+    required
+    email
+     [(ngModel)]="email"
+      (ngModelChange)="email = $event"
+     />
+     <br>
+    <button type="submit" [disabled]="emailform.invalid && loading">Submit</button>
+</form>
+<p *ngIf="searched && loading && PassengersDetails.length==0">loading...</p>
+<table  *ngIf="searched && PassengersDetails.length>0">
+    <thead>
+       
+        <tr>
+            <td>PNR</td>
+            <td>Email</td>
+            <td>Status</td>
+            <td>SeatsBooked</td>
+            <td>Total Amount</td>
+            <td>Flight Number</td>
+            <td>Booking Date</td>
+            <td>Cancel</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let passenger of PassengersDetails">
+            <td>{{passenger.pnr}}</td>
+            <td>{{passenger.email}}</td>
+            <td>{{passenger.status}}</td>
+            <td>{{passenger.seatsBooked}}</td>
+            <td>{{passenger.totalAmount}}</td>
+            <td>{{passenger.flightNumber}}</td>
+            <td>{{passenger.bookingDate}}</td>
+            <button [routerLink]="['/user/cancel-booking',passenger.pnr]"
+            [disabled]="passenger.status === 'Cancelled'">
+         {{ passenger.status === 'Cancelled' ? 'Cancelled' : 'Cancel' }}</button>
+        </tr>
+        </tbody>
+     
+    
+</table>
+<p *ngIf="searched && !loading && PassengersDetails.length==0">
+    No details found
+</p>

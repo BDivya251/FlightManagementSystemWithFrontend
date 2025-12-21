@@ -1,0 +1,43 @@
+<h2>Check PNR Status</h2>
+
+<form (ngSubmit)="checkPnr()" #pnrForm="ngForm">
+
+  <label>
+    PNR:
+    <input
+      type="text"
+      name="pnr"
+      [(ngModel)]="pnr"
+      required
+    />
+  </label>
+
+  <br><br>
+
+  <button type="submit" [disabled]="pnrForm.invalid">
+    Search
+  </button>
+
+</form>
+
+
+<p *ngIf="errorMessage" style="color:red">
+  {{ errorMessage }}
+</p>
+
+
+<div *ngIf="booking">
+
+  <h3>PNR Details</h3>
+
+  <p><b>PNR:</b> {{ booking.pnr }}</p>
+  <p><b>Status:</b> {{ booking.status }}</p>
+  <p><b>Flight:</b> {{ booking.flightNumber }}</p>
+  <p><b>Email:</b> {{ booking.email }}</p>
+  <p><b>Seats:</b> {{ booking.seatsBooked }}</p>
+  <p><b>Total:</b> ₹{{ booking.totalAmount }}</p>
+  <p><b>Flight Time{{booking.departureDate}}</b></p>
+  <p><b>Flight Date{{booking.departureTime}}</b></p>
+  <p><b>Date:</b> {{ booking.bookingDate | date:'medium' }}</p>
+
+</div>

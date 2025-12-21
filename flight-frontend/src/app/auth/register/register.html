@@ -1,0 +1,108 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-xl shadow-md w-96">
+    <h2 class="text-2xl font-bold text-center mb-6">Create Account</h2>
+
+    <form (ngSubmit)="register()" #regForm="ngForm">
+
+      <!-- Username -->
+      <div class="mb-3">
+        <input
+          type="text"
+          placeholder="Username"
+          class="w-full p-3 border rounded"
+          name="username"
+          [(ngModel)]="username"
+          #usernameCtrl="ngModel"
+          required
+        />
+        <p
+          *ngIf="usernameCtrl.invalid && (usernameCtrl.touched || regForm.submitted)"
+          class="text-red-600 text-sm mt-1"
+        >
+          Username is required
+        </p>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <input
+          type="email"
+          placeholder="Email"
+          class="w-full p-3 border rounded"
+          name="email"
+          [(ngModel)]="email"
+          #emailCtrl="ngModel"
+        />
+        <p
+          *ngIf="emailCtrl.invalid && emailCtrl.touched"
+          class="text-red-600 text-sm mt-1"
+        >
+          Enter a valid email
+        </p>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full p-3 border rounded"
+          name="password"
+          [(ngModel)]="password"
+          #passwordCtrl="ngModel"
+          required
+          minlength="6"
+        />
+        <p
+          *ngIf="passwordCtrl.invalid && (passwordCtrl.touched || regForm.submitted)"
+          class="text-red-600 text-sm mt-1"
+        >
+          Password is required (min 6 characters)
+        </p>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-3">
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          class="w-full p-3 border rounded"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          #confirmCtrl="ngModel"
+          required
+        />
+        <p
+          *ngIf="confirmCtrl.invalid && (confirmCtrl.touched || regForm.submitted)"
+          class="text-red-600 text-sm mt-1"
+        >
+          Confirm password is required
+        </p>
+
+        <!-- Password mismatch -->
+        <p
+          *ngIf="confirmPassword && password && confirmPassword !== password"
+          class="text-red-600 text-sm mt-1"
+        >
+          Passwords do not match
+        </p>
+      </div>
+
+      <!-- Admin Checkbox -->
+      <div class="flex items-center mb-4">
+        <input type="checkbox" class="mr-2" [(ngModel)]="isAdmin" name="isAdmin">
+        <span class="text-sm">Register as Admin</span>
+      </div>
+
+      <button
+        class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700
+               disabled:opacity-50"
+        [disabled]="!regForm.valid || confirmPassword !== password"
+      >
+        Register
+      </button>
+
+    </form>
+     <button routerLink="/login">Already have an account</button>
+  </div>
+</div>

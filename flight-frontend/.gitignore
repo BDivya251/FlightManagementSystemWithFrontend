@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn.lock
+
+# Angular
+.angular/
+dist/
+coverage/
+
+# Java / Spring
+target/
+*.class
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+

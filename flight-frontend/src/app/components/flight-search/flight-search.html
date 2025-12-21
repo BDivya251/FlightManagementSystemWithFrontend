@@ -1,0 +1,127 @@
+<div class="max-w-5xl mx-auto mt-10 p-6 bg-white shadow rounded-lg">
+
+  <h2 class="text-xl font-semibold text-gray-800 mb-6">
+    Search Flights
+  </h2>
+
+  <!-- Search Form -->
+  <form
+    (ngSubmit)="searchFlights()"
+    #searchForm="ngForm"
+    class="flex items-end gap-4"
+  >
+
+    <!-- Departure -->
+    <div class="flex flex-col flex-1">
+      <label class="text-sm font-medium text-gray-700 mb-1">
+        Departure
+      </label>
+      <input
+        type="text"
+        name="departure"
+        [(ngModel)]="departure"
+        required
+        placeholder="Hyderabad"
+        class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <!-- Arrival -->
+    <div class="flex flex-col flex-1">
+      <label class="text-sm font-medium text-gray-700 mb-1">
+        Arrival
+      </label>
+      <input
+        type="text"
+        name="arrival"
+        [(ngModel)]="arrival"
+        required
+        placeholder="Delhi"
+         autocomplete="off"
+        class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <!-- Going Date -->
+    <div class="flex flex-col flex-1">
+      <label class="text-sm font-medium text-gray-700 mb-1">
+        Travel Date
+      </label>
+      <input
+        type="date"
+        name="goingDate"
+        [(ngModel)]="goingDate"
+        required
+        class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <!-- Search Button -->
+    <button
+      type="submit"
+      [disabled]="searchForm.invalid"
+      class="bg-blue-600 text-white px-6 py-2 rounded-md
+             hover:bg-blue-700 transition disabled:opacity-50"
+    >
+      Search
+    </button>
+
+  </form>
+</div>
+
+<!-- ================= SEARCH RESULTS ================= -->
+<div
+  *ngIf="searched"
+  class="max-w-5xl mx-auto mt-8 bg-white shadow rounded-lg p-6"
+>
+
+  <!-- Loading -->
+  <!-- <p *ngIf="searched && loading" class="text-blue-600 font-medium">
+    Loading flights...
+  </p> -->
+
+  <!-- Results -->
+  <div *ngIf="!loading">
+
+    <h3 class="text-lg font-semibold mb-4">Available Flights</h3>
+
+    <table *ngIf="flights.length > 0" class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="p-2 border">Id</th>
+          <th class="p-2 border">Flight No</th>
+          <th class="p-2 border">From</th>
+          <th class="p-2 border">To</th>
+          <th class="p-2 border">Date</th>
+          <th class="p-2 border">Time</th>
+          <th class="p-2 border">Price (₹)</th>
+          <th class="p-2 border">Seats</th>
+          <th class="p-2 border">Booking</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let flight of flights" class="hover:bg-gray-50">
+          <td class="p-2 border">{{flight.id}}</td>
+          <td class="p-2 border">{{ flight.flightNumber }}</td>
+          <td class="p-2 border">{{ flight.departure }}</td>
+          <td class="p-2 border">{{ flight.arrival }}</td>
+          <td class="p-2 border">{{ flight.travelDate }}</td>
+          <td class="p-2 border">
+            {{ flight.departureTime }} - {{ flight.arrivalTime }}
+          </td>
+
+          <td class="p-2 border">{{ flight.ticketPrice }}</td>
+           <td class="p-2 border">{{ flight.availableSeats }}</td>
+          <button [routerLink]="['/user/booking',flight.id]">Book</button>
+         
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="flights.length === 0" class="text-gray-500 italic mt-4">
+      No Flights Available
+    </p>
+
+  </div>
+</div>
