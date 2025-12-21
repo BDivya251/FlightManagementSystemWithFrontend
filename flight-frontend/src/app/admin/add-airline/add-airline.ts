@@ -22,11 +22,15 @@ export class AddAirlineComponent {
   airlineName = '';
 successMessage = '';
 errorMessage = '';
-
+airlineId=0;
 constructor(private flightService:FlightService,
    private cdr: ChangeDetectorRef,
     // private router:Router
 ){}
+
+ngOnDestory(){
+  console.log('add airlinecomponent destroy')
+}
 addAirline(){
         const payload=
               {
@@ -42,19 +46,21 @@ addAirline(){
       next: (res) => {
         this.successMessage = 'Airline added successfully';
         this.airlineName = '';
+        this.airlineId=res;
+        console.log(this.airlineId);
         this.airlineName='';
         this.cdr.detectChanges();
-       
+        this.cdr.markForCheck();
         this.errorMessage='';
         setTimeout(()=>{
           this.successMessage='';
-        },3000);
+        },300);
      
       },
       error: () => {
         this.errorMessage = 'Failed to add airline';
         // this.successMessage='';
-     
+        this.cdr.markForCheck();
         
       }
     });

@@ -1,0 +1,16 @@
+<p>search-by-id works!</p>
+<form (ngSubmit)="checkFlights()" #idForm="ngForm">
+    <input type="id"
+    name="id"
+    required
+    [(ngModel)]="id"
+    (ngModelChange)="id=$event"/>
+    <br>
+    <button type="submit" [disabled]="idForm.invalid">Submit</button>
+</form>
+
+<ul>
+    <li *ngFor="let flight of flights">
+        {{flight.flightNumber}}-{{flight.departure}}->{{flight.arrival}}-{{flight.availableSeats}}-{{flight.ticketPrice}}
+    </li>
+</ul>

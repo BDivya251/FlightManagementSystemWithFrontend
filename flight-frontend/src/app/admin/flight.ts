@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FlightInventory } from './flightInventory';
 import { RoundTripFlightResponse } from './RoundTripFlightResponse';
+import { FlightInventorys } from '../auth/admindashboard/interface/FlightInventory';
+import { Airline } from '../auth/admindashboard/interface/Airline';
 const FLIGHT_API='http://localhost:8123/flight-service/flight'
 // http://localhost:8123/flight-service/flight/airline/inventary/add
 @Injectable({
@@ -25,6 +27,18 @@ export class FlightService {
           'Content-Type':'application/json'
         }
       })
+    }
+
+    searchFlightsByAirlineId(id:number){
+      return this.http.get<FlightInventorys[]>(
+        `${FLIGHT_API}/airline/${id}`
+      )
+    }
+
+    searchAllAirlines(){
+      return this.http.get<Airline[]>(
+        `${FLIGHT_API}/airline`
+      )
     }
 
     searchFlights( arrival: string,departure: string,date:string) {

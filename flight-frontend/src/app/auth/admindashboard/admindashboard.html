@@ -30,9 +30,27 @@
   >
     Search Flight
   </button>
+  <button routerLink="search-by-id">
+    Search by id
+  </button>
 </div>
 
+<table class="airline-table" *ngIf="airlines.length>0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Airline Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let airline of airlines">
+      <td>{{ airline.id }}</td>
+      <td>{{ airline.airlineName }}</td>
+    </tr>
+  </tbody>
+</table>
 
 
 <hr/>
-<!-- <router-outlet></router-outlet> -->
+<router-outlet></router-outlet>

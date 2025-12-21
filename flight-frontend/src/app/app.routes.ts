@@ -12,6 +12,7 @@ import { CancelBooking } from './user/cancel-booking/cancel-booking';
 import { BookingService } from './user/booking-service/booking-service';
 import { SearchByEmail } from './user/search-by-email/search-by-email';
 // import { logoutComponent } from './auth/login/login';
+import { SearchById } from './admin/search-by-id/search-by-id';
 export const routes: Routes = [
     {path:'',redirectTo:'home',pathMatch:'full'},
     {path:'home',component:Home},
@@ -24,7 +25,9 @@ export const routes: Routes = [
       { path: 'admin', component: Admindashboard ,
          children: [
       { path: 'add-airline', component: AddAirlineComponent },
-      { path: 'add-flightInventory', component: AddFlightInventoryComponent }
+      { path: 'add-flightInventory', component: AddFlightInventoryComponent },
+       {path:'search-flight',component:FlightSearchComponent},
+       {path:'search-by-id',component:SearchById}
 
     ]
       },

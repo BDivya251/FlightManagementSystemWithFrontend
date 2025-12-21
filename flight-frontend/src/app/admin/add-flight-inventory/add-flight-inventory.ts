@@ -26,7 +26,8 @@ flight = {
     ticketPrice: 0,
     airline: 0
   };
-
+successMessage="";
+errorMessage="";
   constructor(private flightService:FlightService, private cdr: ChangeDetectorRef,){}
   
 
@@ -58,17 +59,27 @@ flight = {
         ticketPrice: 0,
         airline: 0
       };
+      this.successMessage="Flight Inventory added successfully"
+      this.cdr.markForCheck();
+       setTimeout(()=>{
+          this.successMessage='';
+        },300);
     },
 
     error: (err) => {
       console.log(payload)
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Flight not added successfully',
-        confirmButtonColor: '#f02311ff'
-      });
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'Error',
+      //   text: 'Flight not added successfully',
+      //   confirmButtonColor: '#f02311ff'
+      // });
       console.error(err);
+      this.errorMessage="Flight Inventory can not be added"
+      this.cdr.markForCheck();
+       setTimeout(()=>{
+          this.errorMessage='';
+        },300);
     }
   });
 }
