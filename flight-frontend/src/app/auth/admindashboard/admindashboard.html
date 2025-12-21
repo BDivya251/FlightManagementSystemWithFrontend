@@ -4,6 +4,7 @@
 <button routerLink="add-flightInventory">Add Flight Inventory</button>
 <button routerLink="search-flight">Search Flight</button> -->
 
+
 <div class="flex gap-4 mb-6">
     <button (click)="logout()" class="bg-gray-600 text-white px-5 py-2 rounded-lg
            hover:bg-blue-700 transition font-medium shadow">Logout</button>
@@ -22,7 +23,6 @@
   >
     Add Flight Inventory
   </button>
-
   <button
     routerLink="search-flight"
     class="bg-purple-600 text-white px-5 py-2 rounded-lg
@@ -34,12 +34,15 @@
     Search by id
   </button>
 </div>
+<router-outlet></router-outlet>
 
-<table class="airline-table" *ngIf="airlines.length>0">
+<table class="airline-table"  *ngIf="airlines$ | async as airlines">
   <thead>
     <tr>
       <th>ID</th>
       <th>Airline Name</th>
+      <th>Add Flight</th>
+      <th>Get all flights</th>
     </tr>
   </thead>
 
@@ -47,10 +50,11 @@
     <tr *ngFor="let airline of airlines">
       <td>{{ airline.id }}</td>
       <td>{{ airline.airlineName }}</td>
+      <td  [routerLink]="['/admin/add-flightInventory', airline.id]"><button>Add Flight</button></td>
+      <td [routerLink]="['/admin/search-by-id',airline.id]">Get Flights</td>
     </tr>
   </tbody>
 </table>
 
 
 <hr/>
-<router-outlet></router-outlet>

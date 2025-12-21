@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FlightService } from '../flight';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ChangeDetectorRef } from '@angular/core';
 @Component({
@@ -28,12 +29,15 @@ flight = {
   };
 successMessage="";
 errorMessage="";
-  constructor(private flightService:FlightService, private cdr: ChangeDetectorRef,){}
+  constructor(private flightService:FlightService, private cdr: ChangeDetectorRef,private route: ActivatedRoute){}
   
-
+ngOnInit(){
+    this.flight.airline=Number(this.route.snapshot.paramMap.get('id'));
+  }
  addFlight() {
 
   const payload = { ...this.flight }; //  keep data
+  
 
   this.flightService.addFlightInventory(payload).subscribe({
     

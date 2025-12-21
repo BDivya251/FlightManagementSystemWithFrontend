@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 import { FlightInventory } from './flightInventory';
 import { RoundTripFlightResponse } from './RoundTripFlightResponse';
 import { FlightInventorys } from '../auth/admindashboard/interface/FlightInventory';
@@ -12,7 +13,16 @@ const FLIGHT_API='http://localhost:8123/flight-service/flight'
 })
 export class FlightService {
   constructor(private http: HttpClient){}
+private airlineRefresh$ = new Subject<void>();
 
+
+triggerAirlineRefresh() {
+  this.airlineRefresh$.next();
+}
+
+getAirlineRefresh() {
+  return this.airlineRefresh$.asObservable();
+}
   addAirline(data: any): Observable<any> {
       return this.http.post(`${FLIGHT_API}/airline/add`, data, { responseType: 'text' ,  headers: {
         'Content-Type': 'application/json'

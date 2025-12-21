@@ -13,6 +13,20 @@ import { BookingService } from './user/booking-service/booking-service';
 import { SearchByEmail } from './user/search-by-email/search-by-email';
 // import { logoutComponent } from './auth/login/login';
 import { SearchById } from './admin/search-by-id/search-by-id';
+import { ResolveFn } from '@angular/router';
+import { Airline } from './auth/admindashboard/interface/Airline';
+import { FlightService } from './admin/flight';
+import { inject } from '@angular/core';
+// import { FlightService } from '../flight';
+// import { Airline } from '../admindashboard/interface/Airline';
+// export const AirlineResolver: ResolveFn<Airline[]> = () => {
+//   const flightService = inject(FlightService);
+//   const token = localStorage.getItem('auth-token');
+//   if (!token) {
+//     return []; // prevent API call
+//   }
+//   return flightService.searchAllAirlines();
+// };
 export const routes: Routes = [
     {path:'',redirectTo:'home',pathMatch:'full'},
     {path:'home',component:Home},
@@ -23,11 +37,12 @@ export const routes: Routes = [
     
     // {path:'logout',component:logoutComponent},
       { path: 'admin', component: Admindashboard ,
+        // resolve:{airlines:AirlineResolver},
          children: [
       { path: 'add-airline', component: AddAirlineComponent },
-      { path: 'add-flightInventory', component: AddFlightInventoryComponent },
+      { path: 'add-flightInventory/:id', component: AddFlightInventoryComponent },
        {path:'search-flight',component:FlightSearchComponent},
-       {path:'search-by-id',component:SearchById}
+       {path:'search-by-id/:id',component:SearchById}
 
     ]
       },

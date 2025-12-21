@@ -52,6 +52,7 @@ addAirline(){
         this.cdr.detectChanges();
         this.cdr.markForCheck();
         this.errorMessage='';
+        this.flightService.triggerAirlineRefresh();
         setTimeout(()=>{
           this.successMessage='';
         },300);

@@ -4,7 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { Airline } from './interface/Airline';
 import { FlightService } from '../../admin/flight';
 import { CommonModule } from '@angular/common';
-// import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-admindashboard',
   standalone:true,
@@ -13,29 +14,25 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admindashboard.css',
 })
 export class Admindashboard {
-  airlines:Airline[]=[];
+   airlines$!: Observable<Airline[]>; 
 
 
 constructor(
     private authService:AuthService,
     private router:Router,
     private flightService:FlightService,
+    private cdrf:ChangeDetectorRef
   ){}
   
 ngOnInit(){
-  this.showAllAirlines();
+  
+  this.airlines$ = this.flightService.searchAllAirlines();
+  this.loadAirlines();
 }
-showAllAirlines(){
-  this.flightService.searchAllAirlines().subscribe({
-    next:(res)=>{
-      this.airlines=res;
-      
-    },
-    error:()=>{
+loadAirlines() {
+  this.airlines$ = this.flightService.searchAllAirlines();
+}
 
-    }
-  });
-}
 logout() {
     const ok=confirm("are you sure.?? you want to logout");
   if(ok){
