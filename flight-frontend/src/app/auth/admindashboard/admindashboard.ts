@@ -6,10 +6,11 @@ import { FlightService } from '../../admin/flight';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NavbarComponent } from '../../shared/navbar/navbar';
 @Component({
   selector: 'app-admindashboard',
   standalone:true,
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule,CommonModule,NavbarComponent],
   templateUrl: './admindashboard.html',
   styleUrl: './admindashboard.css',
 })
@@ -27,7 +28,10 @@ constructor(
 ngOnInit(){
   
   this.airlines$ = this.flightService.searchAllAirlines();
-  this.loadAirlines();
+  // this.loadAirlines();
+   this.flightService.getAirlineRefresh().subscribe(() => {
+    this.airlines$ = this.flightService.searchAllAirlines();
+  });
 }
 loadAirlines() {
   this.airlines$ = this.flightService.searchAllAirlines();
