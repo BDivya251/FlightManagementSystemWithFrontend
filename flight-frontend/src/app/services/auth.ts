@@ -57,4 +57,13 @@ logout() {
   localStorage.removeItem('auth-token');
 }
 
+changePassword(data: any) {
+  return this.http.post(
+    'http://localhost:8085/change-password',
+    data,
+    { responseType: 'text' }
+  );
+}
+
+
 }
