@@ -43,6 +43,8 @@ The frontend communicates with backend microservices through an API Gateway and 
 -View and manage flight inventory
 
 -Monitor bookings
+
+Home Page:
 <img width="1919" height="964" alt="image" src="https://github.com/user-attachments/assets/b10acdd9-b672-44a8-bff6-0c0ef7a4fde3" />
 
 <img width="940" height="278" alt="image" src="https://github.com/user-attachments/assets/7d996abf-4b14-460a-bcc2-0aaf33878d90" />
