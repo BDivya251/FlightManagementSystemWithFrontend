@@ -1,15 +1,45 @@
-Flight Managment System 
-This is the frontend application for the Flight Management System, built using Angular.
-It interacts with backend microservices through an API Gateway and provides user and admin functionalities such as flight search, booking, authentication, and booking management.
+Flight Management System – Frontend
 
-Framework: Angular
+This repository contains the frontend application for the Flight Management System, developed using Angular.
+The frontend communicates with backend microservices through an API Gateway and provides a complete user and admin interface for flight booking and management.
 
-Language: TypeScript
+🚀 Tech Stack
 
-Styling: HTML, CSS (Tailwind / Bootstrap if used)
+-Framework: Angular
 
-HTTP Client: Angular HttpClient
+-Language: TypeScript
 
-Authentication: JWT-based authentication
+-Styling: HTML, CSS
 
-Routing: Angular Router
+-Routing: Angular Router
+
+-HTTP Communication: Angular HttpClient
+
+-Authentication: JWT (JSON Web Token)
+
+✨ Features
+
+
+👤 User Module
+
+-User login & registration
+
+-Search flights (one-way / round-trip)
+
+-Book flights
+
+-View booking history
+
+-Cancel bookings
+
+-Check PNR status
+
+🛠️ Admin Module
+
+-Admin login
+
+-Add new flights
+
+-View and manage flight inventory
+
+-Monitor bookings
