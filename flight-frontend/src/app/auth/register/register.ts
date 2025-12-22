@@ -33,7 +33,8 @@ username = '';
     {
       username:this.username,
       role:this.role,
-      password:this.password
+      password:this.password,
+      email:this.email
     };
     if(this.isAdmin){
       payload.role='ROLE_ADMIN';

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8085'; // API Gateway or Auth Service
 
@@ -17,6 +17,11 @@ export class AuthService {
     ).pipe(
       tap((token:string)=>{
         localStorage.setItem('auth-token',token);
+      }),
+      switchMap(()=>this.http.get<any>(`${AUTH_API}/me`)),
+      tap((user)=>{
+        localStorage.setItem('username',user.username);
+        localStorage.setItem('email',user.email);
       })
     )
   }
