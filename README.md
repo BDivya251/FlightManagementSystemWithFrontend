@@ -52,6 +52,7 @@ Admin Dashboard:
 <img width="940" height="439" alt="image" src="https://github.com/user-attachments/assets/5d2d29cd-3d90-4442-9bb3-e07ef4d76754" />
 Admin Dashboard:
 <img width="940" height="288" alt="image" src="https://github.com/user-attachments/assets/12c917a6-7a0e-4cd5-a434-0f6eb98de86d" />
+Local Storage:
 <img width="940" height="447" alt="image" src="https://github.com/user-attachments/assets/36dd5c55-40ba-43bf-b14d-ff0c0fbd4823" />
 
 
