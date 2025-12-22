@@ -42,6 +42,7 @@ export class CancelBooking {
   this.pnr=(
     this.route.snapshot.paramMap.get('pnr')
   );
+  this.cancelBooking();
 }
   cancelBooking(){
     if(!this.pnr){
