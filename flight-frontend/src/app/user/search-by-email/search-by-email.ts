@@ -14,14 +14,22 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class SearchByEmail {
   PassengersDetails:PnrResponse[]=[]
-  email=''
+  email:string|null=null;
   searched=false
   loading=false
   constructor(private bookingService:BookingService,
     private cdrf:ChangeDetectorRef
   ){}
+  ngOnInit(){
+    this.email=localStorage.getItem('email');
+    this.getFlights();
+  }
 
   getFlights(){
+    if (!this.email) {
+    alert('Email not found. Please login again.');
+    return;
+  }
     this.searched=true
     this.loading=true
     this.bookingService.getByEmail(this.email).subscribe({

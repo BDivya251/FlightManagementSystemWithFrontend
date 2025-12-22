@@ -1,5 +1,5 @@
 <p>search-by-email works!</p>
-<form (ngSubmit)="getFlights()" #emailform="ngForm">
+<!-- <form (ngSubmit)="getFlights()" #emailform="ngForm">
     <h1>Email</h1>
     <input type="email" 
     name="email"
@@ -10,7 +10,7 @@
      />
      <br>
     <button type="submit" [disabled]="emailform.invalid && loading">Submit</button>
-</form>
+</form> -->
 <p *ngIf="searched && loading && PassengersDetails.length==0">loading...</p>
 <table  *ngIf="searched && PassengersDetails.length>0">
     <thead>
