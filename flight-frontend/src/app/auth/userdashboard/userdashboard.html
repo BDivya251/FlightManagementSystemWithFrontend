@@ -1,4 +1,6 @@
-
+<div class="dashboard">
+  <div class="sidebar">
+    <h3 class="title">User Menu</h3>
 <button (click)="logout()">Logout</button>
 <button routerLink="/user/search-by-pnr">Search by pnr</button>
 <br>
@@ -9,5 +11,8 @@
 <button routerLink="/user/search-by-email">History</button>
  <button routerLink="change-password">Change Password</button>
 <br>
+</div>
+
 <!-- <button routerLink="/user/cancel-booking">Cancel booking</button> -->
 <router-outlet></router-outlet>
+</div>
