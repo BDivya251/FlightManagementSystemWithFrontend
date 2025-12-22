@@ -3,10 +3,11 @@ import { AuthService } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from '../../shared/navbar/navbar';
 @Component({
   selector: 'app-userdashboard',
   standalone:true,
-  imports: [CommonModule,FormsModule,RouterModule],
+  imports: [CommonModule,FormsModule,RouterModule,NavbarComponent],
   templateUrl: './userdashboard.html',
   styleUrl: './userdashboard.css',
 })
