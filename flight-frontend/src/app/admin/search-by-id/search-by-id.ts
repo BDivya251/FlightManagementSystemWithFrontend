@@ -25,7 +25,7 @@ export class SearchById {
   ){}
 ngOnInit(){
   this.id=Number(this.route.snapshot.paramMap.get('id'));
-
+  this.checkFlights();
 }
   checkFlights(){
     // id=this.id;
