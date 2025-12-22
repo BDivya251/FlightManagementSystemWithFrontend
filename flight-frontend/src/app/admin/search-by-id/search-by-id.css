@@ -1,23 +1,57 @@
-ul {
+.flight-list {
   list-style: none;
   padding: 0;
   margin: 20px 0;
 }
 
-ul li {
+.flight-card {
   background-color: #ffffff;
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  font-size: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-ul li:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.flight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.flight-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.flight-number {
+  font-weight: 600;
+  font-size: 15px;
+  color: #1e293b;
+}
+
+.route {
+  font-size: 14px;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.flight-details {
+  text-align: right;
+}
+
+.seats {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.price {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #16a34a;
+  margin-top: 4px;
 }

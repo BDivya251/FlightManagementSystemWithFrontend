@@ -9,8 +9,22 @@
     <button type="submit" [disabled]="idForm.invalid">Submit</button>
 </form> -->
 
-<ul>
-    <li *ngFor="let flight of flights">
-        {{flight.flightNumber}}-{{flight.departure}}->{{flight.arrival}}-{{flight.availableSeats}}-{{flight.ticketPrice}}
-    </li>
+<ul class="flight-list">
+  <li *ngFor="let flight of flights" class="flight-card">
+    <div class="flight-main">
+      <span class="flight-number">{{ flight.flightNumber }}</span>
+      <span class="route">
+        {{ flight.departure }} → {{ flight.arrival }}
+      </span>
+    </div>
+
+    <div class="flight-details">
+      <span class="seats">
+        Seats: {{ flight.availableSeats }}
+      </span>
+      <span class="price">
+        ₹{{ flight.ticketPrice }}
+      </span>
+    </div>
+  </li>
 </ul>
