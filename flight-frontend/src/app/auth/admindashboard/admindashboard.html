@@ -33,6 +33,7 @@
   <button routerLink="search-by-id">
     Search by id
   </button>
+  <button routerLink="change-password">Change Password</button>
 </div>
 <router-outlet></router-outlet>
 
@@ -52,6 +53,7 @@
       <td>{{ airline.airlineName }}</td>
       <td  [routerLink]="['/admin/add-flightInventory', airline.id]"><button>Add Flight</button></td>
       <td [routerLink]="['/admin/search-by-id',airline.id]">Get Flights</td>
+     
     </tr>
   </tbody>
 </table>

@@ -11,6 +11,7 @@ import { Home } from './auth/home/home';
 import { CancelBooking } from './user/cancel-booking/cancel-booking';
 import { BookingService } from './user/booking-service/booking-service';
 import { SearchByEmail } from './user/search-by-email/search-by-email';
+import { ChangePassword } from './auth/change-password/change-password';
 // import { logoutComponent } from './auth/login/login';
 import { SearchById } from './admin/search-by-id/search-by-id';
 import { ResolveFn } from '@angular/router';
@@ -42,8 +43,8 @@ export const routes: Routes = [
       { path: 'add-airline', component: AddAirlineComponent },
       { path: 'add-flightInventory/:id', component: AddFlightInventoryComponent },
        {path:'search-flight',component:FlightSearchComponent},
-       {path:'search-by-id/:id',component:SearchById}
-
+       {path:'search-by-id/:id',component:SearchById},
+          {path:"change-password",component:ChangePassword}
     ]
       },
   { path: 'user', component: Userdashboard ,
@@ -53,7 +54,8 @@ export const routes: Routes = [
        {path:'booking/:flightId',component:BookingService},
        {path:'search-by-email',component:SearchByEmail},
        {path:'search-flight',component:FlightSearchComponent},
-       {path:'cancel-booking/:pnr',component:CancelBooking}
+       {path:'cancel-booking/:pnr',component:CancelBooking},
+         {path:"change-password",component:ChangePassword}
     ]
   },
    {path:'**',redirectTo:'home'},
