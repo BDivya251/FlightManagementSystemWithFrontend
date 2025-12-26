@@ -29,10 +29,12 @@ flight = {
   };
 successMessage="";
 errorMessage="";
+today!:string;
   constructor(private flightService:FlightService, private cdr: ChangeDetectorRef,private route: ActivatedRoute){}
   
 ngOnInit(){
     this.flight.airline=Number(this.route.snapshot.paramMap.get('id'));
+    this.today=new Date().toISOString().split('T')[0];
   }
  addFlight() {
 

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PnrResponse } from './pnr-response';
+import { Observable } from 'rxjs';
 
 const BOOK_AUTH='http://localhost:8123/booking-service/flight'
 
@@ -33,5 +34,6 @@ export class BookingService {
       params:{id}
     })
   }
+  
 
 }

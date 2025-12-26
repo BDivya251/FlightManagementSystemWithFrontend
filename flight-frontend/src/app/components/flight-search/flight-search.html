@@ -51,6 +51,7 @@
         type="date"
         name="goingDate"
         [(ngModel)]="goingDate"
+        [min]="today"
         required
         class="px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
       />
@@ -113,8 +114,8 @@
 
           <td class="p-2 border">{{ flight.ticketPrice }}</td>
            <td class="p-2 border">{{ flight.availableSeats }}</td>
-          <button [routerLink]="['/user/booking',flight.id]">Book</button>
-         
+          <!-- <button [routerLink]="['/user/booking',flight.id]"  (click)="selectFlight(flight)">Book</button> -->
+         <button (click)="selectFlight(flight)">Book</button>
         </tr>
       </tbody>
     </table>

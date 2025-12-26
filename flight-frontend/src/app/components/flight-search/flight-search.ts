@@ -51,7 +51,7 @@ import { FormsModule } from '@angular/forms';
 import { FlightService } from '../../admin/flight';
 import { FlightInventory } from '../../admin/flightInventory';
 import { RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-flight-search',
   standalone: true,
@@ -60,26 +60,45 @@ import { RouterModule } from '@angular/router';
   styleUrl: './flight-search.css',
 })
 export class FlightSearchComponent implements OnInit {
-
+ 
   departure: string = '';
   arrival: string = '';
   goingDate: string = '';
+  
   // goingDate: string = new Date().toISOString().split('T')[0];
   comingDate: string = new Date().toISOString().split('T')[0];
   loading = false;
   searched = false;
   flightId!:number;
+  today!:string
   flights: FlightInventory[] = [];
   flightsComing: FlightInventory[] = []
   constructor(
     private flightService: FlightService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router:Router
   ) { }
 
   // AUTO CALL ON PAGE LOAD
   ngOnInit(): void {
     this.searchFlights();
+    this.today=new Date().toISOString().split('T')[0];
   }
+
+  selectFlight(flight: any) {
+  const selectedFlight = {
+    flightId:flight.flightId,
+    flightNumber: flight.flightNumber,
+    totalSeats: flight.availableSeats,
+    departure: flight.departure,
+    arrival: flight.arrival,
+    travelDate: flight.travelDate
+  };
+
+  // Save in localStorage
+  localStorage.setItem('selectedFlight', JSON.stringify(selectedFlight));
+  this.router.navigate(['/user/booking', flight.id]);  
+}
 
   searchFlights(): void {
     if (!this.departure || !this.arrival || !this.goingDate) {
@@ -96,6 +115,7 @@ export class FlightSearchComponent implements OnInit {
           this.flights = data;
           this.loading = false;
           this.cdr.detectChanges();
+        
         },
         error: () => {
           this.loading = false;

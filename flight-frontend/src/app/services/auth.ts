@@ -6,8 +6,24 @@ const AUTH_API = 'http://localhost:8085'; // API Gateway or Auth Service
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-
+private baseUrl = 'http://localhost:8085';
   constructor(private http: HttpClient) {}
+   forgotPassword(email: string) {
+    return this.http.post(
+      `${this.baseUrl}/forgot-password`,
+      null,
+      { params: { email } }
+    );
+  }
+
+  resetPassword(token: string, newPassword: string) {
+    return this.http.post(
+      `${this.baseUrl}/reset-password`,
+      null,
+      { params: { token, newPassword } ,
+    responseType: 'text'}
+    );
+  }
 
   login(data: any): Observable<any> {
     return this.http.post(`${AUTH_API}/login`, data
@@ -25,6 +41,23 @@ export class AuthService {
       })
     )
   }
+  
+  googleLogin(token: string) {
+  return this.http.post<any>(
+    `${AUTH_API}/google`,
+    { token }
+  );
+}
+
+
+discordLogin(code: string) {
+  return this.http.post(
+    'http://localhost:8085/discord',
+    { code }
+  );
+}
+
+
 
   register(data: any): Observable<any> {
     return this.http.post(`${AUTH_API}/register`, data, { responseType: 'text' });

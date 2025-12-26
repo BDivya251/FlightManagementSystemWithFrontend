@@ -18,16 +18,10 @@ import { ResolveFn } from '@angular/router';
 import { Airline } from './auth/admindashboard/interface/Airline';
 import { FlightService } from './admin/flight';
 import { inject } from '@angular/core';
-// import { FlightService } from '../flight';
-// import { Airline } from '../admindashboard/interface/Airline';
-// export const AirlineResolver: ResolveFn<Airline[]> = () => {
-//   const flightService = inject(FlightService);
-//   const token = localStorage.getItem('auth-token');
-//   if (!token) {
-//     return []; // prevent API call
-//   }
-//   return flightService.searchAllAirlines();
-// };
+import { DiscordLoginComponent } from './auth/discord-login/discord-login';
+import { ChangePasswordFormRea } from './auth/change-password-form-rea/change-password-form-rea';
+import { ForgotPassword } from './auth/forgot-password/forgot-password';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password';
 export const routes: Routes = [
     {path:'',redirectTo:'home',pathMatch:'full'},
     {path:'home',component:Home},
@@ -35,7 +29,15 @@ export const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
     {path:'search-flight',component:FlightSearchComponent},
-    
+    {
+  path: 'discord-login',
+  loadComponent: () =>
+    import('./auth/discord-login/discord-login')
+      .then(m => m.DiscordLoginComponent)
+},
+ { path: 'forgot-password', component: ForgotPassword},
+  { path: 'reset-password', component: ResetPasswordComponent },
+
     // {path:'logout',component:logoutComponent},
       { path: 'admin', component: Admindashboard ,
         // resolve:{airlines:AirlineResolver},
@@ -55,7 +57,7 @@ export const routes: Routes = [
        {path:'search-by-email',component:SearchByEmail},
        {path:'search-flight',component:FlightSearchComponent},
        {path:'cancel-booking/:pnr',component:CancelBooking},
-         {path:"change-password",component:ChangePassword}
+         {path:"change-password",component:ChangePasswordFormRea}
     ]
   },
    {path:'**',redirectTo:'home'},

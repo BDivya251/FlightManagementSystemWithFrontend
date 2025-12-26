@@ -1,3 +1,53 @@
+<!-- <h2>Seat Selection</h2>
+
+<div class="seat-grid">
+  <button
+    *ngFor="let seat of [].constructor(totalSeats); let i = index"
+    type="button"
+    [disabled]="bookedSeats.includes(i + 1)"
+    [ngClass]="{
+      'seat': true,
+      'booked': bookedSeats.includes(i + 1),
+      'selected': selectedSeats.includes(i + 1)
+    }"
+    (click)="selectSeat(i + 1)"
+  >
+    {{ i + 1 }}
+  </button>
+</div>
+
+
+<hr />
+
+<div *ngIf="passengers.length > 0">
+  <h3>Passenger Details</h3>
+
+  <div *ngFor="let p of passengers; let i = index">
+    <h4>Passenger {{ i + 1 }}</h4>
+
+    <input
+      type="text"
+      placeholder="Name"
+      [(ngModel)]="p.name"
+    />
+
+    <input
+      type="number"
+      placeholder="Age"
+      [(ngModel)]="p.age"
+    />
+
+    <p>Seat: <strong>{{ p.seatNumber }}</strong></p>
+  </div>
+</div>
+
+<button
+  class="confirm-btn"
+  [disabled]="passengers.length === 0"
+  (click)="submitBooking()"
+>
+  Confirm Booking
+</button> -->
 <p>booking-service works!</p>
 <p>booking-service works!</p>
 

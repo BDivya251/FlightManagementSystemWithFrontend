@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Discord Login</title>
+</head>
+<body>
+  <h3>Logging in with Discord…</h3>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+
+    if (code) {
+      // Prevent reuse
+      window.history.replaceState({}, document.title, "/");
+
+      // Redirect ONCE with code
+      window.location.replace(
+        'http://localhost:4200/discord-login?code=' + code
+      );
+    } else {
+      document.body.innerText = "No authorization code found.";
+    }
+  </script>
+</body>
+</html>

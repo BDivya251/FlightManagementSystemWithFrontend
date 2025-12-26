@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 import { AuthService } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import Swal from 'sweetalert2';
+
+declare var google:any;
 @Component({
   selector: 'app-login',
   standalone:true,
@@ -12,13 +16,68 @@ import Swal from 'sweetalert2';
   styleUrl: './login.css',
 })
 export class LoginComponent {
+ 
   username='';
   password='';
   errorMessage='';
   constructor(
     private authService :AuthService,
-    private router:Router
+    private router:Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ){}
+ngOnInit() {
+  if (isPlatformBrowser(this.platformId)) {
+    // wait until google script is available
+    const interval = setInterval(() => {
+      if ((window as any).google) {
+        clearInterval(interval);
+
+        google.accounts.id.initialize({
+          client_id: '238889743508-253su7i0oeksp731s43ttv6dcm83e8ck.apps.googleusercontent.com',
+          callback: (response: any) => this.handleGoogleLogin(response)
+        });
+
+        google.accounts.id.renderButton(
+          document.getElementById('googleBtn'),
+          { theme: 'outline', size: 'large' }
+        );
+      }
+    }, 100);
+  }
+}
+
+  handleGoogleLogin(response: any) {
+  const idToken = response.credential;
+
+  console.log(response.credential);
+  this.authService.googleLogin(idToken).subscribe({
+    next: (res: any) => {
+      localStorage.setItem('auth-token', res.token);
+      localStorage.setItem('username', res.email);
+      localStorage.setItem('email', res.email);
+
+      this.router.navigate(['/user']);
+    },
+    error: () => {
+      this.errorMessage = 'Google login failed';
+    }
+  });
+}
+
+
+loginWithDiscord() {
+  const clientId = '1453784099159412867';
+  const redirectUri = 'http://localhost:4200/discord-callback.html';
+
+  const discordAuthUrl =
+    'https://discord.com/oauth2/authorize' +
+    `?client_id=${clientId}` +
+    '&response_type=code' +
+    '&scope=identify%20email' +
+    `&redirect_uri=${encodeURIComponent(redirectUri)}`;
+
+  window.location.href = discordAuthUrl;
+}
 
  login() {
     // basic validation
